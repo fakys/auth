@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="container">
-        <form method="post" enctype="multipart/form-data">
+        <form method="post" action="form.php" enctype="multipart/form-data">
             <div class="form-group">
                 <label>ФИО</label>
                 <input type="text" name="fio"  class="form-control">
