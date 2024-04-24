@@ -1,12 +1,13 @@
 <?php
-require_once('app/Validate.php');
-use app\Validate;
+require 'app/Validate.php';
 
 
-$validate =  Validate::objects();
-$validate->required('fio');
-$validate->required('login');
-$validate->email('email');
-$validate->image('ava');
-$validate->password('password', 'repeat_password');
-var_dump($validate->messages);
+$validate = Validate::objects();
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $validate->required('fio');
+    $validate->required('login');
+    $validate->email('email');
+    $validate->image('ava');
+    $validate->password('password', 'repeat_password');
+    $validate->register()->create_user();
+}

@@ -1,3 +1,6 @@
+<?php
+    require 'form.php';
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,30 +9,56 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <title>Document</title>
 </head>
 <body>
     <div class="container">
-        <form method="post" action="form.php" enctype="multipart/form-data">
+        <form method="post" action="index.php" enctype="multipart/form-data">
             <div class="form-group">
                 <label>ФИО</label>
-                <input type="text" name="fio"  class="form-control">
+                <input type="text" name="fio" value="<?=$validate->values()->fio ?>"  class="form-control">
+                <?php
+                if($validate->errors('fio')){
+                    echo"<p class='invalid'>{$validate->messages()->fio}</p>";
+                }
+                ?>
             </div>
             <div class="form-group">
                 <label>Логин</label>
-                <input type="text" name="login" class="form-control">
+                <input type="text" name="login" value="<?=$validate->values()->login ?>" class="form-control">
+                <?php
+                if($validate->errors('login')){
+                    echo"<p class='invalid'>{$validate->messages()->login}</p>";
+                }
+                ?>
             </div>
             <div class="form-group">
                 <label>Email</label>
-                <input type="email" name="email" class="form-control">
+                <input type="email" name="email" value="<?=$validate->values()->email ?>" class="form-control">
+                <?php
+                if($validate->errors('email')){
+                    echo"<p class='invalid'>{$validate->messages()->email}</p>";
+                }
+                ?>
             </div>
             <div class="form-group">
                 <label>Аватар</label>
                 <input type="file" name="ava"  class="form-control">
+                <?php
+                if($validate->errors('ava')){
+                    echo"<p class='invalid'>{$validate->messages()->ava}</p>";
+                }
+                ?>
             </div>
             <div class="form-group">
                 <label>Пороль</label>
-                <input type="password" name="password" class="form-control">
+                <input type="password" name="password" value="<?=$validate->values()->password ?>" class="form-control">
+                <?php
+                if($validate->errors('password')){
+                    echo"<p class='invalid'>{$validate->messages()->password}</p>";
+                }
+                ?>
             </div>
             <div class="form-group">
                 <label>Повторите пароль</label>

@@ -1,4 +1,8 @@
 <?php
+namespace app\ConnectDataBase;
+use PDO;
+use PDOException;
+
 class ConnectDataBase
 {
     public  $db_name;
