@@ -4,7 +4,7 @@ require_once 'traits/errors.php';
 require_once 'traits/objects.php';
 require_once 'traits/Fields.php';
 
-class Login
+class Login// класс для авторизации пользователя
 {
     use Fields;
     use objects;
@@ -16,9 +16,9 @@ class Login
     public function __construct()
     {
         $this->post = $_POST;
-        $this->db = ConnectDataBase::objects()->connect();
+        $this->db = ConnectDataBase::objects()->connect();// подключение к БД
     }
-    public function __get($key)
+    public function __get($key)//ввывод информации из контекста
     {
         if(isset($this->gets[$key])){
             return $this->gets[$key];
@@ -26,7 +26,7 @@ class Login
         return null;
     }
 
-    private function check_user()
+    private function check_user()//проверяет есть ли пользователь с таким email и поролем
     {
         $email = $this->post['email'];
         $password = md5($this->post['password']);
@@ -41,7 +41,7 @@ class Login
         return true;
     }
 
-    public function login()
+    public function login()// авторизация пользователя
     {
         if(empty($this->messages) && $this->check_user()){
             if(isset($this->post['remember_me']) && $this->post['remember_me']){

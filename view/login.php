@@ -1,7 +1,7 @@
 <?php
-require 'app/auto_loading.php';
-Auth::objects()->redirect_user(true, 'profile.php');
-require 'form_login.php';
+require '../app/auto_loading.php';
+Auth::objects()->redirect_user(true, 'profile.php');//если пользователь авторизирован то редирект на profile.php
+require '../forms/form_login.php';
 
 ?>
 <!doctype html>
@@ -11,8 +11,8 @@ require 'form_login.php';
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="assets/css/bootstrap.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
     <title>Document</title>
 </head>
 <body>

@@ -1,5 +1,6 @@
 <?php
-require_once 'app/auto_loading.php';
+//сюда приходят данные от формы авторизации
+require_once '../app/auto_loading.php';
 
 
 $login = Login::objects();

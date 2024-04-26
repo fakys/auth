@@ -1,5 +1,5 @@
 <?php
-trait Fields
+trait Fields//вот сейчас сижу пишу эти комментарии и думаю, зачем я это создал ?)
 {
     protected $fields = [
         'fio'=>'ФИО',

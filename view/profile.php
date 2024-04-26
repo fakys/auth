@@ -1,7 +1,7 @@
 <?php
-require 'app/auto_loading.php';
-Auth::objects()->redirect_user(false, 'login.php');
-$user = Auth::objects()->user();
+require '../app/auto_loading.php';
+Auth::objects()->redirect_user(false, 'login.php');//если пользователь не авторизирован то редирект на login.php
+$user = Auth::objects()->user();//получение данных о текущем пользователе
 ?>
 <!doctype html>
 <html lang="en">
@@ -11,14 +11,14 @@ $user = Auth::objects()->user();
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>profile</title>
-    <link rel="stylesheet" href="assets/css/bootstrap.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
     <div class="container">
         <h1 class="text-center mb-5">Профиль</h1>
         <div class="d-flex">
-            <div class="d-flex flex-column"><img src="<?=$user['ava']?>" width="200">Ваше фото</div>
+            <div class="d-flex flex-column"><img src="../<?=$user['ava']?>" width="200">Ваше фото</div>
             <ul>
                 <li>
                     ФИО: <?=$user['fio']?>

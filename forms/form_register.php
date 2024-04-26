@@ -1,5 +1,6 @@
 <?php
-require_once 'app/Validate.php';
+//сюда приходят данные от формы регистрации
+require_once '../app/Validate.php';
 
 
 $validate = Validate::objects();
