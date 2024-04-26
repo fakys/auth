@@ -1,5 +1,8 @@
 <?php
-    require 'form.php';
+require 'app/auto_loading.php';
+Auth::objects()->redirect_user(true, 'profile.php');
+require 'form_register.php';
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -14,7 +17,7 @@
 </head>
 <body>
     <div class="container">
-        <form method="post" action="index.php" enctype="multipart/form-data">
+        <form method="post" action="register.php" enctype="multipart/form-data">
             <div class="form-group">
                 <label>ФИО</label>
                 <input type="text" name="fio" value="<?=$validate->values()->fio ?>"  class="form-control">
@@ -65,6 +68,7 @@
                 <input type="password" name="repeat_password" class="form-control">
             </div>
             <div><input type="submit" class="btn btn-primary"></div>
+            <p class="mt-3">У вас есть аккаунт? <a href="login.php">Войдите в него!!</a></p>
         </form>
     </div>
 </body>

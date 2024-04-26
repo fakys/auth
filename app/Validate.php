@@ -1,24 +1,24 @@
 <?php
-require_once('app/traits/Fields.php');
-require_once('app/Register.php');
+require_once 'app/traits/Fields.php';
+require_once 'auto_loading.php';
+require_once 'traits/errors.php';
+require_once 'traits/objects.php';
 
-use app\Register\Register;
-use app\traits\Fields\Fields;
 
 class Validate
 {
     use Fields;
+    use errors;
+    use objects;
     protected array $post;
-    protected static $model;
     protected array $file;
-
-    public array $gets = [];
-    protected array $messages = [];
+    private $db;
 
     public function __construct()
     {
         $this->post = $_POST;
         $this->file =$_FILES;
+        $this->db = ConnectDataBase::objects()->connect();
     }
 
     public function __get($key)
@@ -34,37 +34,18 @@ class Validate
         $this->gets = $this->post;
         return $this;
     }
-    public function messages()
-    {
-        $this->gets = $this->messages;
-        return $this;
-    }
-    public function errors(string $key)
-    {
-        if(isset($this->messages[$key])){
-            return true;
-        }
-        return false;
-    }
-
-    protected function add_messages($field , $messages)
-    {
-        if(empty($this->messages[$field])||!$this->messages[$field]){
-            $this->messages[$field] = $messages;
-        }
-    }
-    public function required(string  $field)
-    {
-        if(!$this->post[$field]){
-            $this->add_messages($field, "Поле {$this->get_field($field)} обязательное!!");
-        }
-    }
 
     public function email(string $field)
     {
+
         $this->required($field);
         if(!filter_var($this->post[$field], FILTER_VALIDATE_EMAIL)){
             $this->add_messages($field, "Некорректный {$this->get_field($field)}!!");
+        }else{
+            $email = $this->post[$field];
+            if($this->db->query("SELECT * FROM users WHERE(email='$email')")->fetch()){
+                $this->add_messages($field, "Такой {$this->get_field($field)} уже существует!!");
+            }
         }
     }
     public function password( string $password, string $password_confirm)
@@ -82,39 +63,21 @@ class Validate
             $this->add_messages($field, "Поле {$this->get_field($field)} должно быть картинкой!!");
         }
     }
-    public static function objects()
-    {
-        if(!self::$model){
-            $class = get_class();
-            self::$model = new $class;
-        }
-        return self::$model;
-    }
     private  function get_user()
     {
         if(!$this->messages){
             $user = $this->post;
             unset( $user['repeat_password']);
-            $user['ava'] = $this->create_user_ava();
+            $user['ava'] = $this->file['ava'];
             return $user;
-        }
-        return null;
-    }
-    private function create_user_ava()
-    {
-        $file_name = uniqid() .'_'.$this->file['ava']['name'];
-        $dirs = "storages/$file_name";
-        if(move_uploaded_file($this->file['ava']['tmp_name'], $dirs)){
-            return $dirs;
         }
         return null;
     }
     public function register()
     {
         if(empty($this->messages)){
-            return Register::objects($this->get_user());
+            Register::objects($this->get_user())->create_user();
         }
-        return null;
     }
 }
 

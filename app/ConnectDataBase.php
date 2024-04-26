@@ -1,10 +1,8 @@
 <?php
-namespace app\ConnectDataBase;
-use PDO;
-use PDOException;
-
+require_once 'traits/objects.php';
 class ConnectDataBase
 {
+    use objects;
     public  $db_name;
     public  $user_name;
     public  $password;

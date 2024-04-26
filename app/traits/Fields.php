@@ -1,5 +1,4 @@
 <?php
-namespace app\traits\Fields;
 trait Fields
 {
     protected $fields = [
@@ -14,4 +13,5 @@ trait Fields
     {
         return $this->fields[$field];
     }
+
 }
