@@ -16,7 +16,7 @@ class Register// класс для регистрации пользовател
     private function create_user_ava()//создает фото пользователя в папке storage
     {
         $file_name = uniqid() .'_'.$this->user['ava']['name'];
-        $dirs = "storages/$file_name";
+        $dirs = "uploads/$file_name";
         if(move_uploaded_file($this->user['ava']['tmp_name'], '../'.$dirs)){
             $this->user['ava'] = $dirs;
         }else{

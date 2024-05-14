@@ -42,7 +42,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `fio`, `login`, `email`, `ava`, `personal_key`, `password`) VALUES
-(10, 'Лавров Иван', 'fakys', 'fakysgg@gmail.com', 'storages/662be0c9b1a49_DSC00058.JPG', '4rHlXj1UMVO2Q5azAnB8xg3YpL92w64YO3DpknRgrCaINebxiqLf', '83d58bea8c7b70e942586814a7a69c2b');
+(10, 'Лавров Иван', 'fakys', 'fakysgg@gmail.com', 'uploads/662be0c9b1a49_DSC00058.JPG', '4rHlXj1UMVO2Q5azAnB8xg3YpL92w64YO3DpknRgrCaINebxiqLf', '83d58bea8c7b70e942586814a7a69c2b');
 
 --
 -- Индексы сохранённых таблиц
